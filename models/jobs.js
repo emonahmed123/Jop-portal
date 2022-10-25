@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator")
 const { ObjectId } = mongoose.Schema.Types;
-
+const date = new Date();
 const jobSchema = mongoose.Schema({
     title: {
         type: String,
@@ -25,11 +25,12 @@ const jobSchema = mongoose.Schema({
     job_type: {
         type: String,
         required: true,
+        eunm:["full-time","part-time",'intership']
     },
-    id: {
-        type: ObjectId,
-        required: true,
-    },
+    // id: {
+    //     type: ObjectId,
+    //     required: true,
+    // },
     candidates_applied: [
         {
             id: {
@@ -46,8 +47,8 @@ const jobSchema = mongoose.Schema({
     ],
     deadline: {
         type: Date,
-        required: true,
-    },
+        default: date.setDate(date.getDate() + 30),
+      },
     createdAt: {
         type: Date,
         default: Date.now(),
